@@ -15,14 +15,20 @@ use Joomla\CMS\Language\Text;
 
 class HtmlView extends BaseHtmlView
 {
-    protected $items;
-    protected $pagination;
+    public $items;
+    public $pagination;
+    public $state;
+    public $filterForm;
+    public $activeFilters;
 
     public function display($tpl = null)
     {
         // Get data from the Model
-        $this->items      = $this->get('Items');
-        $this->pagination = $this->get('Pagination');
+        $this->items         = $this->get('Items');
+        $this->pagination    = $this->get('Pagination');
+        $this->state         = $this->get('State');
+        $this->filterForm    = $this->get('FilterForm');
+        $this->activeFilters = $this->get('ActiveFilters');
 
         // Add toolbar buttons
         $this->addToolbar();

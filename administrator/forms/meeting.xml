@@ -14,7 +14,7 @@
         
         <field name="moderator_pw" type="text" label="COM_BBBBASTAN_FIELD_MODERATOR_PW_LABEL" required="true" class="inputbox" />
         
-        <field name="attendee_pw" type="text" label="COM_BBBBASTAN_FIELD_ATTENDEE_PW_LABEL" required="true" class="inputbox" />
+        <field name="attendee_pw" type="text" label="COM_BBBBASTAN_FIELD_ATTENDEE_PW_LABEL" required="false" class="inputbox" />
         
         <field name="record_meeting" type="radio" filter="integer" class="btn-group btn-group-yesno" default="1" label="COM_BBBBASTAN_FIELD_RECORD_MEETING_LABEL">
             <option value="1">JYES</option>
@@ -35,5 +35,6 @@
             <option value="1">COM_BBBBASTAN_ACTIVE</option>
             <option value="0">COM_BBBBASTAN_INACTIVE</option>
         </field>
+        <field name="image" type="media" label="COM_BBBBASTAN_FIELD_IMAGE_LABEL" description="COM_BBBBASTAN_FIELD_IMAGE_DESC" directory="bbb_bastan" />
     </fieldset>
 </form>

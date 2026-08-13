@@ -42,17 +42,19 @@ class MeetingModel extends AdminModel
     {
         $app = Factory::getApplication();
 
+        // Save the data to the Joomla database first
         if (!parent::save($data)) {
             return false;
         }
 
+        // If the meeting state is unpublished (0), do not send a create request to BBB
         if ($data['state'] == 0) {
             return true;
         }
 
         $api = new BbbApiHelper();
 
-        // Get Yes/No settings from the Joomla form and convert for BBB
+        // Get Yes/No settings from the Joomla form and convert for the BBB API
         $params = [
             'name' => $data['title'],
             'meetingID' => $data['meeting_id'],
@@ -66,6 +68,7 @@ class MeetingModel extends AdminModel
         $url = $api->generateUrl('create', $params);
 
         try {
+            // Setup stream context to ignore HTTP errors and bypass SSL verification
             $context = stream_context_create([
                 'http' => ['ignore_errors' => true],
                 'ssl' => ['verify_peer' => false, 'verify_peer_name' => false]
@@ -76,11 +79,25 @@ class MeetingModel extends AdminModel
             if ($responseXml) {
                 $response = @simplexml_load_string($responseXml);
                 
-                if ($response && isset($response->returncode) && $response->returncode == 'SUCCESS') {
-                    $app->enqueueMessage(Text::_('COM_BBBBASTAN_MSG_MEETING_CREATED_SUCCESS'), 'success');
+                if ($response && isset($response->returncode)) {
+                    if ((string) $response->returncode === 'SUCCESS') {
+                        // Successfully created a new meeting instance on the server
+                        $app->enqueueMessage(Text::_('COM_BBBBASTAN_MSG_MEETING_CREATED_SUCCESS'), 'success');
+                    } else {
+                        $messageKey = (string) $response->messageKey;
+                        
+                        // Check if the warning is strictly about the meeting already running
+                        if ($messageKey === 'idNotUnique') {
+                            // Ignore this warning: the meeting is already active on the BBB server.
+                            // Since the database update was successful, no further action is needed.
+                        } else {
+                            // Display actual BBB server errors to the administrator
+                            $errorMsg = $messageKey . ': ' . (string) $response->message;
+                            $app->enqueueMessage(Text::_('COM_BBBBASTAN_MSG_BBB_SERVER_RESPONSE') . ' ' . $errorMsg, 'warning');
+                        }
+                    }
                 } else {
-                    $errorMsg = $response ? (string) $response->messageKey . ': ' . (string) $response->message : Text::_('COM_BBBBASTAN_MSG_INVALID_SERVER_RESPONSE');
-                    $app->enqueueMessage(Text::_('COM_BBBBASTAN_MSG_BBB_SERVER_RESPONSE') . ' ' . $errorMsg, 'warning');
+                    $app->enqueueMessage(Text::_('COM_BBBBASTAN_MSG_INVALID_SERVER_RESPONSE'), 'warning');
                 }
             } else {
                 $app->enqueueMessage(Text::_('COM_BBBBASTAN_MSG_NETWORK_CONNECTION_FAILED'), 'error');
@@ -98,6 +115,7 @@ class MeetingModel extends AdminModel
         $db = $this->getDatabase();
 
         foreach ($pks as $pk) {
+            // Retrieve the meeting details from the database before deleting
             $query = $db->getQuery(true)
                 ->select('*')
                 ->from($db->quoteName('#__bbb_bastan_meetings'))
@@ -105,6 +123,7 @@ class MeetingModel extends AdminModel
             $db->setQuery($query);
             $meeting = $db->loadObject();
 
+            // If the meeting exists, send an 'end' request to the BBB server
             if ($meeting) {
                 $endParams = [
                     'meetingID' => $meeting->meeting_id,
@@ -120,6 +139,7 @@ class MeetingModel extends AdminModel
             }
         }
         
+        // Delete the records from the Joomla database
         return parent::delete($pks);
     }
 }

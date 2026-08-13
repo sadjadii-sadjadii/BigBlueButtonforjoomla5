@@ -16,6 +16,14 @@ $user = Factory::getApplication()->getIdentity();
 $isGuest = $user->guest;
 ?>
 <div class="bbb-join-container my-5" style="max-width: 500px; margin: auto;">
+    <?php if (!empty($this->item->image)) : ?>
+        <div class="mb-4 text-center">
+            <img src="<?php echo $this->escape(\Joomla\CMS\Uri\Uri::root() . $this->item->image); ?>" 
+                alt="<?php echo $this->escape($this->item->title); ?>" 
+                class="img-fluid rounded shadow-sm" 
+                style="max-height: 250px; object-fit: cover; width: 100%;">
+        </div>
+    <?php endif; ?>    
     <div class="card shadow-sm border-0">
         <div class="card-header bg-primary text-white text-center py-3">
             <h4 class="mb-0"><?php echo Text::_('COM_BBBBASTAN_JOIN_CLASS_TITLE') . ' ' . $this->escape($this->item->title); ?></h4>

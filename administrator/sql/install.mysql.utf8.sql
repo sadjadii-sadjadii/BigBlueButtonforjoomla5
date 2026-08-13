@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS `#__bbb_bastan_meetings` (
     `record_meeting` TINYINT(1) NOT NULL DEFAULT 1,
     `wait_moderator` TINYINT(1) NOT NULL DEFAULT 1,
     `mute_on_start` TINYINT(1) NOT NULL DEFAULT 0,
+    `image` VARCHAR(255) NOT NULL DEFAULT '',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_unicode_ci;
 

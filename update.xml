@@ -6,9 +6,9 @@
 -->
 <updates>
     <update>
-        <name>BigBlueButton</name>
+        <name>com_bbb_bastan</name>
         <description>COM_BBBBASTAN_XML_DESCRIPTION</description>
-        <element>BigBlueButton</element>
+        <element>com_bbb_bastan</element>
         <type>component</type>
         <version>1.1.0</version>
         <downloads>

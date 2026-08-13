@@ -31,6 +31,13 @@ class MeetingsModel extends ListModel
         $query->select('*')
               ->from($db->quoteName('#__bbb_bastan_meetings'));
 
+        // Searching
+        $search = $this->getState('filter.search');
+        if (!empty($search)) {
+            $search = $db->quote('%' . str_replace(' ', '%', $db->escape(trim($search), true) . '%'));
+            $query->where('(' . $db->quoteName('title') . ' LIKE ' . $search . 
+                          ' OR ' . $db->quoteName('meeting_id') . ' LIKE ' . $search . ')');
+        }
         return $query;
     }
 }

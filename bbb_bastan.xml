@@ -5,7 +5,7 @@
  - @license     GNU General Public License version 2 or later; see LICENSE.txt
  -->
 <extension type="component" method="upgrade">
-    <name>BigBlueButton</name>
+    <name>bbb_bastan</name>
     <creationDate>August 2026</creationDate>
     <author>BastanGraphic</author>
     <authorEmail>sadjadii@gmail.com</authorEmail>
@@ -19,19 +19,21 @@
     <namespace path="src">Sajadi\Component\BbbBastan</namespace>
     
     <administration>
-        <menu img="class:classes" view="meetings">BigBlueButton</menu>
+        <menu img="class:classes" view="meetings">bbb_bastan</menu>
         <submenu>
             <menu link="option=com_bbb_bastan&amp;view=meetings">COM_BBBBASTAN_SUBMENU_MEETINGS</menu>
             <menu link="option=com_bbb_bastan&amp;view=logs">COM_BBBBASTAN_SUBMENU_LOGS</menu>
         </submenu>
         <files folder="administrator">
             <filename>config.xml</filename>
+			<filename>LICENSE.txt</filename>
             <folder>services</folder>
             <folder>src</folder>
             <folder>tmpl</folder>
             <folder>sql</folder>
             <folder>Table</folder>
             <folder>forms</folder>
+			<folder>language</folder>
         </files>
     </administration>
     
@@ -50,17 +52,18 @@
     <files folder="site">
         <folder>src</folder>
         <folder>tmpl</folder>
+		<folder>language</folder>
     </files>
 
     <!-- Language files definition for Joomla JED compliance -->
     <languages folder="administrator">
-        <language tag="en-GB">language/en-GB/com_bigbluebutton.ini</language>
-        <language tag="en-GB">language/en-GB/com_bigbluebutton.sys.ini</language>
-        <language tag="fa-IR">language/fa-IR/com_bigbluebutton.ini</language>
-        <language tag="fa-IR">language/fa-IR/com_bigbluebutton.sys.ini</language>
+        <language tag="en-GB">language/en-GB/com_bbb_bastan.ini</language>
+        <language tag="en-GB">language/en-GB/com_bbb_bastan.sys.ini</language>
+        <language tag="fa-IR">language/fa-IR/com_bbb_bastan.ini</language>
+        <language tag="fa-IR">language/fa-IR/com_bbb_bastan.sys.ini</language>
     </languages>
 
     <updateservers>
-        <server type="extension" priority="1" name="BBB Bastan Updates">https://b-li.org/update/com_bbb_bastan.xml</server>
+        <server type="extension" priority="1" name="BBB Bastan Updates">https://raw.githubusercontent.com/sadjadii-sadjadii/BigBlueButtonforjoomla5/main/update.xml</server>
     </updateservers>
 </extension>

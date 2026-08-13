@@ -25,6 +25,13 @@ class LogsModel extends ListModel
               ->leftJoin($db->quoteName('#__users', 'u') . ' ON a.user_id = u.id')
               ->order($db->quoteName('a.join_time') . ' DESC');
 
+        // Searching
+        $search = $this->getState('filter.search');
+        if (!empty($search)) {
+            $search = $db->quote('%' . str_replace(' ', '%', $db->escape(trim($search), true) . '%'));
+            $query->where('(' . $db->quoteName('meeting_name') . ' LIKE ' . $search . 
+                          ' OR ' . $db->quoteName('user_name') . ' LIKE ' . $search . ')');
+        }
         return $query;
     }
 }

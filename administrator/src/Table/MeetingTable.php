@@ -16,7 +16,6 @@ class MeetingTable extends Table
 {
     public function __construct(DatabaseDriver $db)
     {
-        // اتصال به جدولی که قبلا در SQL ساختیم
         parent::__construct('#__bbb_bastan_meetings', 'id', $db);
     }
 }

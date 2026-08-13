@@ -26,9 +26,21 @@ use Joomla\CMS\Language\Text;
                 </thead>
                 <tbody>
                     <?php foreach ($this->items as $item) : ?>
+                        <?php 
+                            // Check if this class's ID exists in the list of online classes
+                            $isOnline = in_array($item->meeting_id, $this->runningMeetings); 
+                        ?>
                         <tr>
                             <td class="align-middle">
                                 <strong><?php echo $this->escape($item->title); ?></strong>
+                                <?php if ($isOnline) : ?>
+                                    <span class="badge bg-success ms-2">
+                                        <span class="spinner-grow spinner-grow-sm text-light" role="status" aria-hidden="true" style="width: 0.5rem; height: 0.5rem;"></span>
+                                        <?php echo Text::_('COM_BBBBASTAN_MEETINGS_STATUS_ONLINE'); ?>
+                                    </span>
+                                <?php else : ?>
+                                    <span class="badge bg-secondary ms-2"><?php echo Text::_('COM_BBBBASTAN_MEETINGS_STATUS_OFFLINE'); ?></span>
+                                <?php endif; ?>
                             </td>
                             <td class="text-center">
                                 <!-- Join button: The link redirects to the join view -->

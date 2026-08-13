@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ - @package     BBB Bastan
+ - @copyright   Copyright (C) 2026 BastanGraphic. All rights reserved.
+ - @license     GNU General Public License version 2 or later; see LICENSE.txt
+ -->
+<form>
+    <fields name="filter">
+        <field name="search" type="text" inputmode="search" label="COM_BBBBASTAN_SEARCH" hint="JSEARCH_FILTER" />
+    </fields>
+    <fields name="list">
+        <field name="limit" type="limitbox" label="JGLOBAL_LIST_LIMIT" default="25" onchange="this.form.submit();" />
+    </fields>
+</form>
