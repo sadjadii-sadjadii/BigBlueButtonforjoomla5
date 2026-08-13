@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ - @package     BBB Bastan
+ - @copyright   Copyright (C) 2026 BastanGraphic. All rights reserved.
+ - @license     GNU General Public License version 2 or later; see LICENSE.txt
+ -->
+<form>
+    <fieldset name="details" label="COM_BBBBASTAN_FIELDSET_DETAILS_LABEL">
+        <field name="id" type="hidden" />
+        
+        <field name="title" type="text" label="COM_BBBBASTAN_FIELD_TITLE_LABEL" required="true" class="inputbox" />
+        
+        <field name="meeting_id" type="text" label="COM_BBBBASTAN_FIELD_MEETING_ID_LABEL" description="COM_BBBBASTAN_FIELD_MEETING_ID_DESC" required="true" class="inputbox" />
+        
+        <field name="moderator_pw" type="text" label="COM_BBBBASTAN_FIELD_MODERATOR_PW_LABEL" required="true" class="inputbox" />
+        
+        <field name="attendee_pw" type="text" label="COM_BBBBASTAN_FIELD_ATTENDEE_PW_LABEL" required="true" class="inputbox" />
+        
+        <field name="record_meeting" type="radio" filter="integer" class="btn-group btn-group-yesno" default="1" label="COM_BBBBASTAN_FIELD_RECORD_MEETING_LABEL">
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
+        </field>
+
+        <field name="wait_moderator" type="radio" filter="integer" class="btn-group btn-group-yesno" default="1" label="COM_BBBBASTAN_FIELD_WAIT_MODERATOR_LABEL">
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
+        </field>
+
+        <field name="mute_on_start" type="radio" filter="integer" class="btn-group btn-group-yesno" default="0" label="COM_BBBBASTAN_FIELD_MUTE_ON_START_LABEL">
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
+        </field>
+        
+        <field name="state" type="list" label="COM_BBBBASTAN_FIELD_STATE_LABEL" default="1" class="form-select">
+            <option value="1">COM_BBBBASTAN_ACTIVE</option>
+            <option value="0">COM_BBBBASTAN_INACTIVE</option>
+        </field>
+    </fieldset>
+</form>

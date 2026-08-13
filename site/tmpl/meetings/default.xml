@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ - @package     BBB Bastan
+ - @copyright   Copyright (C) 2026 BastanGraphic. All rights reserved.
+ - @license     GNU General Public License version 2 or later; see LICENSE.txt
+ -->
+<metadata>
+    <layout title="COM_BBBBASTAN_MEETINGS_VIEW_DEFAULT_TITLE">
+        <message>COM_BBBBASTAN_MEETINGS_VIEW_DEFAULT_DESC</message>
+    </layout>
+</metadata>

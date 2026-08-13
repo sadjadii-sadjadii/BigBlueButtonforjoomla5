@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ - @package     BBB Bastan
+ - @copyright   Copyright (C) 2026 BastanGraphic. All rights reserved.
+ - @license     GNU General Public License version 2 or later; see LICENSE.txt
+ -->
+<extension type="component" method="upgrade">
+    <name>BigBlueButton</name>
+    <creationDate>August 2026</creationDate>
+    <author>BastanGraphic</author>
+    <authorEmail>sadjadii@gmail.com</authorEmail>
+    <authorUrl>https://bastangraphic.com</authorUrl>
+    <copyright>Copyright (C) 2026 BastanGraphic. All rights reserved.</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+    <version>1.0.0</version>
+    <description>COM_BBBBASTAN_XML_DESCRIPTION</description>
+    
+    <!-- Define the base namespace for Joomla 5 -->
+    <namespace path="src">Sajadi\Component\BbbBastan</namespace>
+    
+    <administration>
+        <menu img="class:classes" view="meetings">BigBlueButton</menu>
+        <submenu>
+            <menu link="option=com_bbb_bastan&amp;view=meetings">COM_BBBBASTAN_SUBMENU_MEETINGS</menu>
+            <menu link="option=com_bbb_bastan&amp;view=logs">COM_BBBBASTAN_SUBMENU_LOGS</menu>
+        </submenu>
+        <files folder="administrator">
+            <filename>config.xml</filename>
+            <folder>services</folder>
+            <folder>src</folder>
+            <folder>tmpl</folder>
+            <folder>sql</folder>
+            <folder>Table</folder>
+            <folder>forms</folder>
+        </files>
+    </administration>
+    
+    <install>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+        </sql>
+    </install>
+    
+    <uninstall>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+        </sql>
+    </uninstall>
+
+    <files folder="site">
+        <folder>src</folder>
+        <folder>tmpl</folder>
+    </files>
+
+    <!-- Language files definition for Joomla JED compliance -->
+    <languages folder="administrator">
+        <language tag="en-GB">language/en-GB/com_bigbluebutton.ini</language>
+        <language tag="en-GB">language/en-GB/com_bigbluebutton.sys.ini</language>
+        <language tag="fa-IR">language/fa-IR/com_bigbluebutton.ini</language>
+        <language tag="fa-IR">language/fa-IR/com_bigbluebutton.sys.ini</language>
+    </languages>
+
+    <updateservers>
+        <server type="extension" priority="1" name="BBB Bastan Updates">https://b-li.org/update/com_bbb_bastan.xml</server>
+    </updateservers>
+</extension>
